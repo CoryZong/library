@@ -1,0 +1,13 @@
+.nav {
+  height: 50px;
+  width: 100vw;
+  display: flex;
+  background-color: white;
+  justify-content: space-around;
+  align-content: center;
+  &--hyperlink {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
