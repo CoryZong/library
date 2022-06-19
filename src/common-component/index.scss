@@ -1,18 +1,77 @@
+$primary: rgb(238, 233, 229);
+
 .nav {
-  height: 50px;
+  height: 8vh;
   width: 100vw;
-  position: sticky;
-  top: 0;
-  &__item {
-    height: 100%;
-    background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 2.5rem 3rem;
+
+  &__logo {
+    margin-right: 2rem;
+  }
+
+  &__input {
+    font-size: 1rem;
+    font-weight: 500;
+    border: 3px solid $primary;
+    border-radius: 30px;
+    padding: 0.4rem 2.5rem;
+  }
+
+  &__glass {
+    font-size: 1rem;
+    position: absolute;
+    left: 300px;
+  }
+
+  &__right {
+    width: 30%;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    &--hyperlink {
+    justify-content: space-between;
+    padding: 3rem;
+    a {
       color: black;
       font-weight: bold;
       text-decoration: none;
     }
   }
+
+  &__icons {
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+    &--bell {
+      font-size: 2rem;
+      border-radius: 50%;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+    &--user {
+      font-size: 2rem;
+      background-color: white;
+      padding: 0.5rem;
+      pointer-events: stroke;
+
+      &:hover > .fa-camera {
+        display: block;
+      }
+    }
+    &--camera {
+      display: none;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      font-size: 1rem;
+      border-radius: 50%;
+      padding: 0.8rem;
+      position: absolute;
+      top: 20px;
+      right: 50px;
+      cursor: pointer;
+    }
+  }
+}
+
+.anticon-close-circle {
+  transform: scale(1.5);
 }
