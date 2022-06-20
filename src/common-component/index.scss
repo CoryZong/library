@@ -42,30 +42,23 @@ $primary: rgb(238, 233, 229);
     display: flex;
     justify-content: flex-end;
     &--bell {
-      font-size: 2rem;
-      border-radius: 50%;
       padding: 0.5rem;
       cursor: pointer;
     }
     &--user {
-      font-size: 2rem;
+      font-size: 1.5rem;
       background-color: white;
       padding: 0.5rem;
       pointer-events: stroke;
 
-      &:hover > .fa-camera {
+      &:hover > .nav__icons--camera {
         display: block;
       }
     }
     &--camera {
       display: none;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.7);
-      font-size: 1rem;
-      border-radius: 50%;
-      padding: 0.8rem;
       position: absolute;
-      top: 20px;
+      top: 25px;
       right: 50px;
       cursor: pointer;
     }
@@ -74,4 +67,8 @@ $primary: rgb(238, 233, 229);
 
 .anticon-close-circle {
   transform: scale(1.5);
+}
+
+.dropdown{
+  background-color: $primary;
 }

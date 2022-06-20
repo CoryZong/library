@@ -1,25 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.scss";
 import { NavLink } from "react-router-dom";
-import { AutoComplete } from "antd";
+import { AutoComplete, Dropdown, Menu, Avatar, Badge } from "antd";
 import "antd/dist/antd.css";
 
-const mockVal = (str, repeat = 1) => ({
-  value: str.repeat(repeat),
-});
-
 function Nav() {
-  const [options, setOptions] = useState([]);
+  const list = [
+    {
+      value: "Cory",
+    },
+    {
+      value: "Nathan",
+    },
+    {
+      value: "Henry",
+    },
+    {
+      value: "Tris",
+    },
+    {
+      value: "Cooper",
+    },
+  ];
+  const [bellCount, setBellCount] = useState(5);
+  const [query, setQuery] = useState("");
+  const [show, setShow] = useState([]);
 
-  const onSearch = (searchText) => {
-    setOptions(!searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]);
-  };
+  function onSearch(searchText) {
+    setQuery(searchText);
+  }
+  function filterSearch() {
+    let result = list.filter((e, index) => {
+      return e.value.includes(query);
+    });
+    setShow(result);
+  }
+
+  useEffect(() => {
+    setTimeout(filterSearch, 100);
+  }, [query]);
+
+  const picInput = <input type="file" />;
+  const menu = (
+    <Menu
+      items={[
+        {
+          label: "1st menu item",
+          key: "1",
+        },
+        {
+          label: "2nd menu item",
+          key: "2",
+        },
+      ]}
+    />
+  );
+
   return (
     <div className="nav">
       <NavLink className="nav__logo" to="/">
         <img src={"https://fakeimg.pl/200x50/"} />
       </NavLink>
-      <AutoComplete options={options} style={{ width: "70%" }} onSearch={onSearch} allowClear="true">
+      <AutoComplete
+        options={show}
+        style={{ width: "70%" }}
+        onSearch={(e) => setQuery(e)}
+        allowClear="true"
+      >
         <input className="nav__input" type="text" placeholder="請輸入關鍵字" />
       </AutoComplete>
       <i className="fa-solid fa-magnifying-glass nav__glass"></i>
@@ -31,9 +78,23 @@ function Nav() {
         <span style={{ fontWeight: "bold" }}>後台</span>
       </div>
       <div className="nav__icons">
-        <i className="fa-regular fa-bell nav__icons--bell"></i>
+        <Dropdown overlay={menu} placement="bottom" trigger={["click"]}>
+          <Badge count={bellCount} overflowCount={9} offset={[-10, 12]}>
+            <img
+              src="../../images/bell.png"
+              className="nav__icons--bell"
+              onClick={() => setBellCount(0)}
+            />
+          </Badge>
+        </Dropdown>
         <i className="fa-solid fa-user-large nav__icons--user">
-          <i className="fa-solid fa-camera nav__icons--camera"></i>
+          <Dropdown
+            overlay={picInput}
+            placement="bottom"
+            overlayClassName="dropdown"
+          >
+            <img src="../../images/camera.png" className="nav__icons--camera" />
+          </Dropdown>
         </i>
       </div>
     </div>

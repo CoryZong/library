@@ -1,8 +1,8 @@
 import { useRoutes } from "react-router-dom";
-import Homepage from "./homepage/Homepage";
-import StudyRoom from "./my-studyroom/StudyRoom";
-import MyFavourite from "./my-favourite/MyFavourite";
-import BookPurchase from "./book-purchase/BookPurchase";
+import Homepage from "./pages/homepage/Homepage";
+import StudyRoom from "./pages/my-studyroom/StudyRoom";
+import MyFavourite from "./pages/my-favourite/MyFavourite";
+import BookPurchase from "./pages/book-purchase/BookPurchase";
 export default function Router() {
   return useRoutes([
     {
